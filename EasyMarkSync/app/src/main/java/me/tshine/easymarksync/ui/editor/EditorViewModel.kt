@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import me.tshine.easymarksync.data.db.NoteEntity
 import me.tshine.easymarksync.data.repo.NoteRepository
+import me.tshine.easymarksync.util.DateUtils
 
 class EditorViewModel(
     private val notes: NoteRepository,
@@ -38,10 +39,10 @@ class EditorViewModel(
                 _title.value = n.title
                 _content.value = n.content
             } else {
-                // 笔记不存在时兜底创建，避免后续保存静默丢弃
+                // 笔记不存在时兜底创建，避免后续保存静默丢弃；默认标题 = 当天日期（可修改）
                 _note.value = NoteEntity(
                     id = noteId,
-                    title = "", content = "",
+                    title = DateUtils.todayName(), content = "",
                     modifyTime = System.currentTimeMillis(),
                     createdAt = System.currentTimeMillis()
                 )

@@ -3,3 +3,4 @@
 **/.gradle/
 **/.kotlin/
 *.iml
+local.properties

@@ -3,6 +3,7 @@ package me.tshine.easymarksync.data.repo
 import kotlinx.coroutines.flow.Flow
 import me.tshine.easymarksync.data.db.AppDatabase
 import me.tshine.easymarksync.data.db.NoteEntity
+import me.tshine.easymarksync.util.DateUtils
 import java.util.UUID
 
 class NoteRepository(private val db: AppDatabase) {
@@ -22,7 +23,7 @@ class NoteRepository(private val db: AppDatabase) {
         val now = System.currentTimeMillis()
         val note = NoteEntity(
             id = UUID.randomUUID().toString(),
-            title = "",
+            title = DateUtils.todayName(), // 默认文件名/标题 = 当天日期（如 2026-09-12），可修改
             content = "",
             modifyTime = now,
             createdAt = now
